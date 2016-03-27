@@ -1,10 +1,13 @@
 require 'google/api_client'
 require "send_gmail/version"
 require 'send_gmail/auth'
+require 'send_gmail/mail_list'
+require 'send_gmail/objects/mail'
 
 module SendGmail
   class Client
     include SendGmail::Auth
+    include SendGmail::MailList
 
     attr_accessor :authorization, :client, :gmail_api
 
