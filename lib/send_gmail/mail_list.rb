@@ -1,12 +1,12 @@
 module SendGmail
   module MailList
-    def mail_id_list(query, user_id = 'me', next_page_token = nil)
+    def mail_id_list(query, _user_id = 'me', next_page_token = nil)
       parameters = { userId: 'me', q: query }
       parameters[:pageToken] = next_page_token unless next_page_token.nil?
 
       results = @client.execute!(
         api_method: @gmail_api.users.messages.list,
-        parameters: parameters,
+        parameters: parameters
       )
 
       {
@@ -21,7 +21,7 @@ module SendGmail
 
       results = @client.execute!(
         api_method: @gmail_api.users.messages.list,
-        parameters: parameters,
+        parameters: parameters
       )
 
       {
@@ -33,7 +33,7 @@ module SendGmail
     def mail_detail(mail_id, user_id = 'me')
       results = @client.execute!(
         api_method: @gmail_api.users.messages.get,
-        parameters: { userId: user_id, id: mail_id },
+        parameters: { userId: user_id, id: mail_id }
       )
       obj = JSON.parse(results.response.body, symbolize_names: true)
       base64url_data = obj[:payload][:body][:data]

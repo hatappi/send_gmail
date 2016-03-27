@@ -18,7 +18,7 @@ module SendGmail
         flow = Google::APIClient::InstalledAppFlow.new(
           client_id: ENV['GOOGLE_CLIENT_ID'],
           client_secret: ENV['GOOGLE_CLIENT_SECRET'],
-          scope: SCOPE,
+          scope: SCOPE
         )
         auth = flow.authorize(storage)
       end
