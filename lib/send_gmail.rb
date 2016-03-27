@@ -1,5 +1,8 @@
 require "send_gmail/version"
+require 'send_gmail/auth'
 
 module SendGmail
-  # Your code goes here...
+  class Client
+
+  end
 end
