@@ -6,8 +6,13 @@ require 'fileutils'
 
 module SendGmail
   module Auth
-    def authorize
-      credentials_path = '/tmp/client_secrets.json'
+    def authorize(
+      credentials_path = '/tmp/client_secrets.json',
+      client_id = ENV['GOOGLE_CLIENT_ID'],
+      client_secret = ENV['GOOGLE_CLIENT_SECRET'],
+      scope = 'https://www.googleapis.com/auth/gmail.readonly'
+      )
+      
       FileUtils.mkdir_p(File.dirname(credentials_path))
 
       file_store = Google::APIClient::FileStore.new(credentials_path)
@@ -16,9 +21,9 @@ module SendGmail
 
       if auth.nil? || (auth.expired? && auth.refresh_token.nil?)
         flow = Google::APIClient::InstalledAppFlow.new(
-          client_id: ENV['GOOGLE_CLIENT_ID'],
-          client_secret: ENV['GOOGLE_CLIENT_SECRET'],
-          scope: SCOPE
+          client_id: client_id,
+          client_secret: client_secret,
+          scope: scope
         )
         auth = flow.authorize(storage)
       end
