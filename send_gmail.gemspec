@@ -6,18 +6,16 @@ require 'send_gmail/version'
 Gem::Specification.new do |spec|
   spec.name          = 'send_gmail'
   spec.version       = SendGmail::VERSION
-  spec.authors       = ['h,yusaku']
+  spec.authors       = ['hatappi']
   spec.email         = ['hata.yusaku.1225@gmail.com']
 
-  spec.summary       = 'send and recive gmail'
-  spec.description   = 'send and recive gmail'
+  spec.summary       = 'incoming mail'
+  spec.description   = 'incoming mail by google gmail api'
   spec.homepage      = 'https://github.com/hatappi/send_gmail'
   spec.license       = 'MIT'
 
-  # Prevent pushing this gem to RubyGems.org by setting 'allowed_push_host', or
-  # delete this section to allow pushing this gem to any host.
   if spec.respond_to?(:metadata)
-    spec.metadata['allowed_push_host'] = "TODO: Set to 'http://mygemserver.com'"
+    spec.metadata['allowed_push_host'] = 'http://github.com'
   else
     fail 'RubyGems 2.0 or newer is required to protect against public gem pushes.'
   end

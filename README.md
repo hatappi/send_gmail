@@ -1,8 +1,14 @@
 # SendGmail
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/send_gmail`. To experiment with that code, run `bin/console` for an interactive prompt.
+send_gmail handles gmail.  
+now it features only the acquisition of e-mail. this gem is using gmail api.  
+https://developers.google.com/gmail/api/ 
 
-TODO: Delete this and the text above, and describe your gem
+## Feature
+* mail sending
+* create draft
+* on/off label
+* other...
 
 ## Installation
 
@@ -20,20 +26,41 @@ Or install it yourself as:
 
     $ gem install send_gmail
 
-## Usage
+## To begin with
+```ruby
+$ client = SendGmail::Client.new
+$ client.authorize(credentials_path, client_id, client_secret, scope)
+```
 
-TODO: Write usage instructions here
+* credentials_path is save authentication information path
+* client_id, client_sercret is https://developers.google.com/api-client-library/python/guide/aaa_client_secrets
+* scope is https://developers.google.com/gmail/api/auth/scopes
 
-## Development
+## Incoming mail
 
-After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment. Run `bundle exec send_gmail` to use the gem in this directory, ignoring other installed copies of this gem.
+```ruby
+$ mail_id_list = client.mail_id_list(searching_option)
+  => {
+   :mail_id_list=>["ffffff", "ccccc", ...],
+   :next_page_token=>"123456789"
+   }
 
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
+$ mail_id_list[:mail_id_list].map { |mail_id| client.mail_detail(mail_id) }
+  => [#<SendGmail::Objects::Mail... , ...]
+```
+
+```ruby
+$ mail_list = client.mail_list(searching_option)
+  => {
+   :mail_id_list => [#<SendGmail::Objects::Mail... , ...],
+   :next_page_token => "123456789"
+   }
+```
+
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/send_gmail. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](contributor-covenant.org) code of conduct.
-
+Bug reports and pull requests are welcome on GitHub at https://github.com/hatappi/send_gmail.
 
 ## License
 
