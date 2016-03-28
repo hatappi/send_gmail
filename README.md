@@ -5,7 +5,6 @@ now it features only the acquisition of e-mail. this gem is using gmail api.
 https://developers.google.com/gmail/api/ 
 
 ## Feature
-* mail sending
 * create draft
 * on/off label
 * other...
@@ -36,6 +35,13 @@ $ client.authorize(credentials_path, client_id, client_secret, scope)
 * client_id, client_sercret is https://developers.google.com/api-client-library/python/guide/aaa_client_secrets
 * scope is https://developers.google.com/gmail/api/auth/scopes
 
+### First Time
+1. browser auto open and login user
+2. auto write oauth information to credentials_path
+
+### From second time
+1. if credentials_path is exist, browser no need to open
+
 ## Incoming mail
 
 ```ruby
@@ -57,6 +63,11 @@ $ mail_list = client.mail_list(searching_option)
    }
 ```
 
+## Outgoing mail
+```ruby
+$ client.send_mail(to, subject, msg, from = nil, bcc = nil, cc = nil, user_id = 'me')
+  => 200
+```
 
 ## Contributing
 
