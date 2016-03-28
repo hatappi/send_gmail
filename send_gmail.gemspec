@@ -9,8 +9,8 @@ Gem::Specification.new do |spec|
   spec.authors       = ['hatappi']
   spec.email         = ['hata.yusaku.1225@gmail.com']
 
-  spec.summary       = 'incoming mail'
-  spec.description   = 'incoming mail by google gmail api'
+  spec.summary       = 'incoming, outgoing  mail'
+  spec.description   = 'incoming, outgoing mail by google gmail api'
   spec.homepage      = 'https://github.com/hatappi/send_gmail'
   spec.license       = 'MIT'
 
